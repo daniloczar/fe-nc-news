@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import {
+  Container,
   Divider,
   Drawer,
   IconButton,
@@ -13,6 +14,7 @@ import {
   ListItemText,
   styled,
   Typography,
+  
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -26,6 +28,7 @@ import {
 } from "react-icons/fa6";
 import { useState } from "react";
 import BadgeAvatars from "./Avatar";
+import TabsBar from "../Toolbar/Toolbar";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -81,40 +84,59 @@ function NavBar() {
   };
 
   return (
-    <Box>
-      <AppBar style={{ backgroundColor: "#f91111" }}>
-        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          <Box style={{ display: "flex", justifyContent: "space-between", alignItems:'center' }}>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={drawerOpen}
+    <div>
+      <Box>
+        <AppBar style={{ backgroundColor: "#f91111", position: "relative" }}>
+          <Toolbar
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              minHeight: "70px",
+            }}
+          >
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
             >
-              <MenuIcon />
-            </IconButton>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={drawerOpen}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="div">
+                NC - News
+              </Typography>
+            </Box>
+            <BadgeAvatars />
+          </Toolbar>
+          <Divider />
+          <Box style={{ backgroundColor: "#828282" }}>
+            <TabsBar /> 
+          </Box>
+        </AppBar>
+        <Drawer anchor="left" open={open} onClose={drawerClose}>
+          {/* offset menu */}
+          <DrawerHeader>
             <Typography variant="h6" component="div">
               NC - News
             </Typography>
-          </Box>
-          <BadgeAvatars />
-        </Toolbar>
-      </AppBar>
-      <Drawer anchor="left" open={open} onClose={drawerClose}>
-        <DrawerHeader>
-          <Typography variant="h6" component="div">
-            NC - News
-          </Typography>
-          <IconButton onClick={drawerClose}>
-            <ChevronLeftIcon sx={{ color: "#fff" }} />
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        {DrawerList}
-      </Drawer>
-    </Box>
+            <IconButton onClick={drawerClose}>
+              <ChevronLeftIcon sx={{ color: "#fff" }} />
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          {DrawerList}
+        </Drawer>
+      </Box>
+    </div>
   );
 }
 

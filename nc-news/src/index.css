@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdownOrder {
+    height: 26px;
+    background-color: white;
+}
+
+.cardHomeSmall{
+    display: flex;
+    gap: 10px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.081);
+    margin: 10px;
+    text-align: justify;
+    max-height: 200px;
+    max-width: 450px;
+}
+.cardHomeSmall .card-img{
+    max-width: 40%;
+    height: auto; 
+}
+/* 
+.card-content{
+    padding: 10px;
+}
+
+.card-content > h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#articlesList{
+    display: inline-block;
+}
+
+.gridContainer{
+    padding-right: 0;
+    padding-left: 0;
+} */
+
+

@@ -82,6 +82,7 @@ export default function BadgeAvatars() {
             <Avatar alt="user name" src="/static/images/avatar/1.jpg" />
           </StyledBadge>
         </IconButton>
+        <Typography>Username</Typography>
       </Toolbar>
 
       <Drawer anchor="right" open={open} onClose={drawerClose}>
