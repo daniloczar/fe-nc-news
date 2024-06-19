@@ -24,7 +24,7 @@ export default function TabsBar() {
       >
         <Tab value="one" label="Top Stories" component={Link} to={"/"} />
         <Tab value="two" label="Football" component={Link} to={"/articles"} />
-        <Tab value="three" label="Coding" />
+        <Tab value="three" label="Coding" component={Link} to={'/coding'}/>
         <Tab value="four" label="Cooking" />
         <OrderBy />
         <SortBy />

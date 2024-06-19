@@ -26,9 +26,12 @@ export default function SortBy() {
           <MenuItem value="">
             <em>SortBy</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>Newest</MenuItem>
+          <MenuItem value={20}>Oldest</MenuItem>
+          <MenuItem value={30}>Most liked</MenuItem>
+          <MenuItem value={40}>Least liked</MenuItem>
+          <MenuItem value={50}>Comments</MenuItem>
+          <MenuItem value={60}>Author</MenuItem>
         </Select>
       </FormControl>
     </div>

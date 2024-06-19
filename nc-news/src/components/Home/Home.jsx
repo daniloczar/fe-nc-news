@@ -1,11 +1,21 @@
 import React from "react";
-import ArticleCard from "../Articles/ArticleCard";
+import Article from "../Articles/Article";
+import ArticleId from "../Articles/ArticleId";
+import Articles from "../Articles/Articles";
 import ArticlesCard from "../Articles/ArticlesCard";
+import CommentCard from "../Comments/CommentCard";
 import HomeCard from "./HomeCard";
 import HomeCardHeader from "./HomeCardHeader";
 
 function Home() {
-  return <ArticlesCard />;
+  return (
+  <div>
+    {/* <Article/> */}
+    <CommentCard />
+    <Articles />;
+    <ArticleId />
+  </div>
+    )
 }
 
 export default Home;
