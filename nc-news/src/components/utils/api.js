@@ -48,17 +48,21 @@ export const getUsers = () => {
   });
 };
 
-export const addCommentByArticleId = (author, body, article_id) => {
-  return api
-    .post(`/articles/${article_id}/comments`, { body, author })
-    .then((res) => {
-      return res.data;
-    });
+export const addCommentByArticleId = (username, body, article_id) => {
+  const postBody = {
+    username: username,
+    body: body,
+  };
+  return api.post(`/articles/${article_id}/comments`, postBody)
+  .then((res) => {
+    console.log('from post api',res)
+    return res.data;
+  });
 };
 
-export const updateArticleById = (article_id) => {
-  return articlesApi
-    .patch(`/articles/${article_id}`, { inc_votes: 1 })
+export const updateArticleById = (article_id, votes) => {
+  return api
+    .patch(`/articles/${article_id}`, { inc_votes: votes })
     .then((res) => {
       return res.data;
     });
@@ -68,6 +72,7 @@ export const deleteCommentById = (comment_id) => {
   return api
     .delete(`/comments/${comment_id}`)
     .then((res) => {
+      console.log('From delete api',res)
       return res.data;
     })
     .catch((error) => {

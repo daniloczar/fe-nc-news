@@ -1,63 +1,58 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { addCommentByArticleId } from "../utils/api";
 
 
-export default function PostComment({ setComments, article_id }) {
-  const [comment, setComment] = useState("");
-  const [err, setErr] = useState("");
+export default function PostComment({currentUser}) {
+    const { username } = currentUser;
 
-  const handleChange = (event) => {
-    setComment(event.target.value);
-  };
+  const [newComment, setNewComment] = useState("");
+  const [commentMessage, setCommentMessage] = useState("");
+  const { article_id } = useParams;
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
+    setFetchedComments(false);
     event.preventDefault();
-
-    const newComment = {
-      username: "user",
-      body: comment,
-    };
-
-    if (newComment.body.length === 0) {
-      console.log("Don't forget to include a comment!");
-    } else {
-      setErr(false);
-      setComment("");
-      addCommentByArticleId(article_id, newComment)
-        .catch((err) => {
-          setErr(err);
-          console.log("Somthing went wrong! Please try again");
-          setComments((currComments) => {
-            currComments.slice(1);
-          });
-        })
-        .then((newResponseComment) => {
-          setComments((currComments) => {
-            return [newResponseComment, ...currComments];
-          });
+    addCommentByArticleId(username, newComment, article_id)
+    console.log('from addcomment',username, article_id, newComment)
+      .then((newCommentFromApi) => {
+        setNewComment("");
+        setFetchedComments(true);
+        setCommentMessage("Comment posted successfully.");
+        setTimeout(() => {
+          setCommentMessage("");
+        }, 3000);
+        setArticleComments((currComments) => {
+          return [newCommentFromApi, ...currComments];
         });
-    }
-  };
-  console.log(err);
+      })
+      .catch((error) => {
+        setCommentMessage("Failed to post comment. Please try again later.");
+        console.error(error);
+      });
+  }
   return (
     <section className="form-content">
-        <div className="form-box">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label className="postlabel">Leave a comment</label>
-            </div>
-            <textarea
-              value={comment}
-              onChange={handleChange}
-              placeholder="Like this post?"
-            />
-            <div>
-              <button className="submit" type="submit">
-                Post
-              </button>
-            </div>
-          </form>
-        </div>
+      <div className="form-box">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className="postlabel">Leave a comment</label>
+          </div>
+          <textarea
+            value={newComment}
+            onChange={(event) => {
+              setNewComment(event.target.value);
+            }}
+            placeholder="Like this post?"
+          />
+          <div>
+            <button className="submit" type="submit" disabled={!newComment}>
+              Post
+            </button>
+            <p className="comment-success-message">{commentMessage}</p>
+          </div>
+        </form>
+      </div>
     </section>
-          );
+  );
 }
