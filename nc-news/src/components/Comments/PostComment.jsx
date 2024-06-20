@@ -3,18 +3,16 @@ import { useParams } from "react-router-dom";
 import { addCommentByArticleId } from "../utils/api";
 
 
-export default function PostComment({currentUser}) {
-    const { username } = currentUser;
-
+export default function PostComment({ currentUser, setArticleComments, setFetchedComments }) {
+  const { username } = currentUser;
   const [newComment, setNewComment] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
-  const { article_id } = useParams;
+  const { article_id } = useParams();
 
   function handleSubmit(event) {
     setFetchedComments(false);
     event.preventDefault();
     addCommentByArticleId(username, newComment, article_id)
-    console.log('from addcomment',username, article_id, newComment)
       .then((newCommentFromApi) => {
         setNewComment("");
         setFetchedComments(true);

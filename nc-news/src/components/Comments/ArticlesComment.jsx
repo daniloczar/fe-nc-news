@@ -58,7 +58,7 @@ export default function ArticleComments({
         {articleComments.map(
           ({ comment_id, body, author, votes, created_at }, index) => {
             return (
-              <div className="comment-card-container" key={comment_id}>
+              <div key={index} className="comment-card-container">
                 <dl className="individual-comment-box">
                   <div className="timeandby2">
                     <dt className="card_author">By {author}</dt>
