@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import {
-  Container,
   Divider,
   Drawer,
   IconButton,
@@ -14,7 +13,6 @@ import {
   ListItemText,
   styled,
   Typography,
-  
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -29,6 +27,7 @@ import {
 import { useState } from "react";
 import BadgeAvatars from "./Avatar";
 import TabsBar from "../Toolbar/Toolbar";
+import { useNavigate } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -42,13 +41,22 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 function NavBar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   const topics = [
-    { text: "Home", icon: <FaHouse color='black'/> },
-    { text: "Coding", icon: <FaCode color='black' /> },
-    { text: "Cooking", icon: <FaUtensils color='black' /> },
-    { text: "Footbal", icon: <FaFutbol color='black' /> },
-    { text: "About", icon: <FaCircleInfo color='black' /> },
+    { text: "Home", path: "/articles", icon: <FaHouse color="black" /> },
+    { text: "Coding", path: "/topic/coding", icon: <FaCode color="black" /> },
+    {
+      text: "Cooking",
+      path: "/topic/cooking",
+      icon: <FaUtensils color="black" />,
+    },
+    {
+      text: "Footbal",
+      path: "/topic/football",
+      icon: <FaFutbol color="black" />,
+    },
+    { text: "About", path: "/about", icon: <FaCircleInfo color="black" /> },
   ];
 
   const DrawerList = (
@@ -60,10 +68,10 @@ function NavBar() {
         alignContent: "center",
       }}
     >
-      <List>
+      <List sx={{ pr: 3 }}>
         {topics.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={()=> {navigate(item.path)}}>
               <ListItemIcon sx={{ display: "flex", justifyContent: "center" }}>
                 {item.icon}
               </ListItemIcon>
@@ -119,7 +127,7 @@ function NavBar() {
           </Toolbar>
           <Divider />
           <Box style={{ backgroundColor: "#828282" }}>
-            <TabsBar /> 
+            <TabsBar />
           </Box>
         </AppBar>
         <Drawer anchor="left" open={open} onClose={drawerClose}>
