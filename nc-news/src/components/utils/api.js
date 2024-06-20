@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: "https://backend-project-nc-news-z6wy.onrender.com/api",
 });
 
-export const getArticles = () => {
+export const getArticles = (topic, sort, order) => {
   return api
     .get("/articles")
     .then((res) => {
@@ -32,10 +32,14 @@ export const getCommentsByArticleId = (article_id) => {
   });
 };
 
-export const getTopics = () => {
-  return api.get("/topics").then((res) => {
-    return res.data;
-  });
+export const getTopics = (topic, sort, order) => {
+  return api
+    .get(`articles?topic=${topic}`, {
+      params: { sort_by: sort, order: order },
+    })
+    .then((res) => {
+      return res.data;
+    });
 };
 
 export const getUsers = () => {

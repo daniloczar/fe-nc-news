@@ -52,3 +52,119 @@
   text-align: center;
   margin-bottom: 40px;
 }
+
+.form-content{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.033);
+  background-color: rgba(251, 251, 251, 0.454);
+}
+
+.form-box {
+  text-align: center;
+    margin: .5rem;
+    padding:.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-style: hidden;
+}
+.form-box textarea {
+    margin: 1rem;
+    border: 2;
+    border-radius: 5px;
+    font-size: 16px;
+    align-items: center;
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 0.2rem;
+    width: 90%;
+    height: 6rem;
+}
+
+.submit {
+    box-shadow: 0px 0px 5px 0px #07070738;
+    background-color: #373838;
+    border: 1px solid #00000034;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 5px 25px;
+    text-decoration: none;
+    font-weight: 400;
+}
+.submit:hover {
+    background-color: #313131;
+}
+.submit:active {
+    position: relative;
+    top: 1px;
+}
+
+.article-box{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.comment-card-container {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 950px;
+}
+
+.individual-comment-box {
+    margin: 1rem 1rem 1rem 2rem;
+    box-shadow: 0 0 28px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 2.5rem;
+    padding-bottom: 1rem;
+}
+.comment_body {
+  font-weight: 400;
+    padding-bottom: 1rem;
+}
+
+.likeanddelete {
+    flex-direction: column;
+    text-align: right;
+    padding-top: 1rem;
+}
+
+.timeandby2 {
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.votes-p{
+  font-weight: 400;
+}
+
+.card_author{
+  font-size: 1rem;
+}
+
+.comment-footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.article_time{
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(157, 157, 157);
+  margin-top: 13px;
+}
+.art_comments_header{
+  text-align: center;
+  margin: 40px;
+}

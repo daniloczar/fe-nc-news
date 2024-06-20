@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ArticleComments from '../Comments/ArticlesComment';
+import PostComment from "../Comments/PostComment";
 import { getArticleById } from '../utils/api';
 import Article from './Article';
 
@@ -29,8 +30,8 @@ export default function ArticleId() {
       ) : (
         <div>
           <Article article={article} />
-          {/* <PostComment article_id={article_id} /> */}
-          <ArticleComments articleId={article_id} />
+          <PostComment article_id={article_id} />
+          <ArticleComments article_id={article_id} />
         </div>
       )}
     </>

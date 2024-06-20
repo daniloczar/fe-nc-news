@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 
 function ArticlesCard({ article }) {
-
+console.log(article)
   return (
     <section className="cardMain">
       <div className="card-holder">

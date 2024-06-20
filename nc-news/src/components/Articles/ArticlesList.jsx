@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
-import { getArticles } from "../utils/api";
+import * as api from "../utils/api";
 import ArticlesCard from "./ArticlesCard";
 import { useParams } from "react-router-dom";
+import { SortBy } from "../SortBy/SortBy";
 
-const Articles = ({ sortBy, order }) => {
+const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sort, setSort] = useState("created_at");
+  const [order, setOrder] = useState();
   const { topic } = useParams();
 
   useEffect(() => {
-    getArticles({ topic, sortBy, order }).then((data) => {
+   api.getArticles({ topic, sort, order }).then((data) => {
+    console.log('from allArticles',data)
       setIsLoading(false);
       setArticlesList(data.allArticles);
     });
-  }, [topic, sortBy, order]);
+  }, [topic, sort, order]);
 
-  const articlesHeader = topic ? 
-  `${topic.charAt(0).toUpperCase() + topic.slice(1).toLowerCase()}  Articles`
+  const articlesHeader = topic
+    ? `${
+        topic.charAt(0).toUpperCase() + topic.slice(1).toLowerCase()
+      }  Articles`
     : "Articles";
 
   if (isLoading) {
@@ -25,6 +31,7 @@ const Articles = ({ sortBy, order }) => {
   return (
     <section className="articleMain">
       <h2 className="articleH2">{articlesHeader}</h2>
+      <SortBy setSort={setSort} setOrder={setOrder} />
       <section id="articlesList">
         {articlesList.map((article) => {
           return (
@@ -38,4 +45,4 @@ const Articles = ({ sortBy, order }) => {
   );
 };
 
-export default Articles;
+export default ArticlesList;

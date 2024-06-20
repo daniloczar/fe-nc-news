@@ -40,22 +40,24 @@ export default function PostComment({ setComments, article_id }) {
   };
   console.log(err);
   return (
-    <div className="form-box">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="postlabel">Leave a comment</label>
+    <section className="form-content">
+        <div className="form-box">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="postlabel">Leave a comment</label>
+            </div>
+            <textarea
+              value={comment}
+              onChange={handleChange}
+              placeholder="Like this post?"
+            />
+            <div>
+              <button className="submit" type="submit">
+                Post
+              </button>
+            </div>
+          </form>
         </div>
-        <textarea
-          value={comment}
-          onChange={handleChange}
-          placeholder="Like this post? Get chirping!"
-        />
-        <div>
-          <button className="submit" type="submit">
-            Post
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+    </section>
+          );
 }
