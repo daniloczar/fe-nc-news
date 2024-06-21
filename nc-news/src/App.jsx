@@ -22,14 +22,14 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ArticlesList />} />
           <Route path="/articles" element={<ArticlesList />} />
           <Route
             path="/articles/:article_id"
             element={<ArticleId currentUser={currentUser} />}
           />
-          <Route path="/topic/:topic" />
-          <Route path="/users" element={<ArticlesList />} />
+          <Route path="/topic/:topic" element={<ArticlesList />} />
+          <Route path="/users" />
           <Route
             path="/articles/:article_id/comments"
             element={<ArticleComments />}

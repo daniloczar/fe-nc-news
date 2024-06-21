@@ -8,9 +8,9 @@ export const SortBy = ({ setSortBy, setOrder }) => {
     setOrder(e.target.value);
   };
   return (
-    <nav>
+    <nav className="sortOrderBox">
       <ul id="option-list">
-        <li>
+        <li className="sortBox">
           <form>
             <label>
               Sort by:{" "}
@@ -23,7 +23,7 @@ export const SortBy = ({ setSortBy, setOrder }) => {
             </label>
           </form>
         </li>
-        <li>
+        <li className="sortBox">
           <form>
             <label>
               Order:{" "}

@@ -3,12 +3,12 @@ import * as api from "../utils/api";
 import ArticlesCard from "./ArticlesCard";
 import { useParams } from "react-router-dom";
 import { SortBy } from "../SortBy/SortBy";
-
+import TabsBar from "../Toolbar/Toolbar";
 
 const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("created_at");
+  const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("asc");
   const { topic } = useParams();
 
@@ -33,7 +33,7 @@ const ArticlesList = () => {
       });
 
     api
-      .getArticles( topic, sortBy, order )
+      .getArticles(topic, sortBy, order)
       .then((data) => {
         console.log("getArticle----->", data.allArticles);
         setArticlesList(data.allArticles);
@@ -46,7 +46,7 @@ const ArticlesList = () => {
         setIsLoading(false);
       });
   }, [topic, sortBy, order]);
-console.log('from articleList',articlesList)
+  console.log("from articleList", articlesList);
   const articlesHeader = topic
     ? `${
         topic.charAt(0).toUpperCase() + topic.slice(1).toLowerCase()
@@ -59,18 +59,17 @@ console.log('from articleList',articlesList)
   return (
     <section className="articleMain">
       {isLoading ? "Loading..." : null}
-      {isLoadingTopicsFailed ? (
-        "Topic does not exist"
-      ) : null}
+      {isLoadingTopicsFailed ? "Topic does not exist" : null}
 
       {!isLoading && !isLoadingTopicsFailed ? (
         <>
-          <h2 className="articleH2">{articlesHeader}</h2>
+          {/* <TabsBar setSortBy={setSortBy} setOrder={setOrder} /> */}
           <SortBy
             topicList={topicList}
             setSortBy={setSortBy}
             setOrder={setOrder}
           />
+          <h2 className="articleH2">{articlesHeader}</h2>
           <section id="articlesList">
             {articlesList.map((article) => {
               return (
@@ -83,7 +82,7 @@ console.log('from articleList',articlesList)
         </>
       ) : null}
     </section>
-  ); 
+  );
 };
 
 export default ArticlesList;

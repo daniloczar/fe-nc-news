@@ -1,15 +1,11 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SortBy() {
-  const [age, setAge] = React.useState("");
-
+export default function SortBytab({setSortBy}) {
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setSortBy(event.target.value);
   };
 
   return (
@@ -17,21 +13,19 @@ export default function SortBy() {
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
           className="dropdownOrder"
-          value={age}
+          defaultValue={"SortBy"}
           onChange={handleChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
           sx={{ fontSize: 14 }}
         >
-          <MenuItem value="">
+          <MenuItem value={"SortBy"}>
             <em>SortBy</em>
           </MenuItem>
-          <MenuItem value={10}>Newest</MenuItem>
-          <MenuItem value={20}>Oldest</MenuItem>
-          <MenuItem value={30}>Most liked</MenuItem>
-          <MenuItem value={40}>Least liked</MenuItem>
-          <MenuItem value={50}>Comments</MenuItem>
-          <MenuItem value={60}>Author</MenuItem>
+          <MenuItem value={"created_at"}>Date</MenuItem>
+          <MenuItem value={"comment_count"}>Comment count</MenuItem>
+          <MenuItem value={"votes"}>Votes</MenuItem>
+          <MenuItem value={"title"}>Title</MenuItem>
         </Select>
       </FormControl>
     </div>

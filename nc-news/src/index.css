@@ -176,3 +176,22 @@
 .artButtom-p{
   margin: 0;
 }
+
+.sortBox{
+  list-style-type: none;
+}
+
+.sortOrderBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#option-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#option-list li {
+  margin-left: 20px;
+}

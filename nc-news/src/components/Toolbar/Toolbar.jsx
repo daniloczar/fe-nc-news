@@ -6,7 +6,7 @@ import OrderBy from "./OderBY";
 import SortBytab from "./SortBYtab";
 import { Link } from "react-router-dom";
 
-export default function TabsBar() {
+export default function TabsBar({ setSortBy, setOrder }) {
   const [selectedTab, setSelectedTab] = React.useState("one");
 
   const handleChange = (event, newValue) => {
@@ -41,8 +41,11 @@ export default function TabsBar() {
           component={Link}
           to={"/topic/cooking"}
         />
-        <OrderBy />
-        <SortBytab />
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <OrderBy />
+          <SortBytab setSortBy={setSortBy} />
+        </div>
       </Tabs>
     </Box>
   );
