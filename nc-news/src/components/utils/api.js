@@ -4,10 +4,13 @@ const api = axios.create({
   baseURL: "https://backend-project-nc-news-z6wy.onrender.com/api",
 });
 
-export const getArticles = (topic, sort, order) => {
+export const getArticles = (topic, sortBy, order) => {
   return api
-    .get("/articles")
+    .get("/articles", {
+      params: { topic: topic, sort_by: sortBy, order },
+    })
     .then((res) => {
+      console.log("from api articles", res);
       return res.data;
     })
     .catch((err) => {
@@ -32,14 +35,10 @@ export const getCommentsByArticleId = (article_id) => {
   });
 };
 
-export const getTopics = (topic, sort, order) => {
-  return api
-    .get(`articles?topic=${topic}`, {
-      params: { sort_by: sort, order: order },
-    })
-    .then((res) => {
-      return res.data;
-    });
+export const getTopics = () => {
+  return api.get(`/topics`).then((res) => {
+    return res.data;
+  });
 };
 
 export const getUsers = () => {
@@ -53,9 +52,8 @@ export const addCommentByArticleId = (username, body, article_id) => {
     username: username,
     body: body,
   };
-  return api.post(`/articles/${article_id}/comments`, postBody)
-  .then((res) => {
-    console.log('from post api',res)
+  return api.post(`/articles/${article_id}/comments`, postBody).then((res) => {
+    console.log("from post api", res);
     return res.data;
   });
 };
@@ -72,7 +70,7 @@ export const deleteCommentById = (comment_id) => {
   return api
     .delete(`/comments/${comment_id}`)
     .then((res) => {
-      console.log('From delete api',res)
+      console.log("From delete api", res);
       return res.data;
     })
     .catch((error) => {

@@ -4,21 +4,49 @@ import ArticlesCard from "./ArticlesCard";
 import { useParams } from "react-router-dom";
 import { SortBy } from "../SortBy/SortBy";
 
+
 const ArticlesList = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sort, setSort] = useState("created_at");
-  const [order, setOrder] = useState();
+    const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("asc");
   const { topic } = useParams();
 
-  useEffect(() => {
-   api.getArticles({ topic, sort, order }).then((data) => {
-    console.log('from allArticles',data)
-      setIsLoading(false);
-      setArticlesList(data.allArticles);
-    });
-  }, [topic, sort, order]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [topicList, setTopicList] = useState([]);
+  const [articlesOnThisPage, setArticlesOnThisPage] = useState([]);
+  const [isLoadingTopicsFailed, setIsLoadingTopicsFailed] = useState(false);
 
+  useEffect(() => {
+    setCurrentPage(1);
+    setIsLoadingTopicsFailed(false);
+    setIsLoading(true);
+
+    api
+      .getTopics()
+      .then((data) => {
+        setTopicList(data.ArrTopics);
+      })
+      .catch((error) => {
+        console.error("Error fetching topics:", error);
+        setIsLoadingTopicsFailed(true);
+      });
+
+    api
+      .getArticles( topic, sortBy, order )
+      .then((data) => {
+        console.log("getArticle----->", data.allArticles);
+        setArticlesList(data.allArticles);
+        setArticlesOnThisPage(data.allArticles.slice(0, 10));
+      })
+      .catch((error) => {
+        console.error("Error fetching articles:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [topic, sortBy, order]);
+console.log('from articleList',articlesList)
   const articlesHeader = topic
     ? `${
         topic.charAt(0).toUpperCase() + topic.slice(1).toLowerCase()
@@ -30,19 +58,32 @@ const ArticlesList = () => {
   }
   return (
     <section className="articleMain">
-      <h2 className="articleH2">{articlesHeader}</h2>
-      <SortBy setSort={setSort} setOrder={setOrder} />
-      <section id="articlesList">
-        {articlesList.map((article) => {
-          return (
-            <div key={article.article_id}>
-              <ArticlesCard article={article} />
-            </div>
-          );
-        })}
-      </section>
+      {isLoading ? "Loading..." : null}
+      {isLoadingTopicsFailed ? (
+        "Topic does not exist"
+      ) : null}
+
+      {!isLoading && !isLoadingTopicsFailed ? (
+        <>
+          <h2 className="articleH2">{articlesHeader}</h2>
+          <SortBy
+            topicList={topicList}
+            setSortBy={setSortBy}
+            setOrder={setOrder}
+          />
+          <section id="articlesList">
+            {articlesList.map((article) => {
+              return (
+                <div key={article.article_id}>
+                  <ArticlesCard article={article} />
+                </div>
+              );
+            })}
+          </section>
+        </>
+      ) : null}
     </section>
-  );
+  ); 
 };
 
 export default ArticlesList;

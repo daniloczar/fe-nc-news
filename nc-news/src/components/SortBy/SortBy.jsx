@@ -1,31 +1,40 @@
-export const SortBy = ({ setSort, setOrder }) => {
-  const handleClick = (sort) => {
-    const [sortBy, order] = sort.split(" ");
-    setSort(sortBy);
-    setOrder(order);
+
+export const SortBy = ({ setSortBy, setOrder }) => {
+  const handleSortByChange = (e) => {
+    setSortBy(e.target.value);
   };
 
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
+  };
   return (
-    <div>
-      <label>
-        <select
-          className="sort_by"
-          onChange={(event) => {
-            handleClick(event.target.value);
-          }}
-        >
-          <option value={"default"} disabled>
-            Sort By...
-          </option>
-          <option value="created_at desc">Newest</option>
-          <option value="created_at asc">Oldest</option>
-          <option value="votes desc">Most liked</option>
-          <option value="votes asc">Least liked</option>
-          <option value="comment_count desc">Most talked about</option>
-          <option value="comment_count asc">Least talked about</option>
-          {/* //add comment sort */}
-        </select>
-      </label>
-    </div>
+    <nav>
+      <ul id="option-list">
+        <li>
+          <form>
+            <label>
+              Sort by:{" "}
+              <select onChange={handleSortByChange}>
+                <option value="created_at">Date</option>
+                <option value="comment_count">Comment count</option>
+                <option value="votes">Votes</option>
+                <option value="title">Title</option>
+              </select>
+            </label>
+          </form>
+        </li>
+        <li>
+          <form>
+            <label>
+              Order:{" "}
+              <select onChange={handleOrderChange}>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+            </label>
+          </form>
+        </li>
+      </ul>
+    </nav>
   );
 };

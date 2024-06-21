@@ -3,9 +3,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function ArticlesCard({ article }) {
-console.log(article)
+  console.log('from card',article)
+   const navigate = useNavigate();
   return (
     <section className="cardMain">
       <div className="card-holder">
@@ -30,7 +32,14 @@ console.log(article)
                 marginTop: "10%",
               }}
             >
-              <Button variant="danger">Read More</Button>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  navigate(`/articles/${article.article_id}`);
+                }}
+              >
+                Read More
+              </Button>
             </Card.Body>
           </Card.Body>
         </Card>

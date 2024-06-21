@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import OrderBy from "./OderBY";
-import SortBy from "./SortBY";
+import SortBytab from "./SortBYtab";
 import { Link } from "react-router-dom";
 
 export default function TabsBar() {
@@ -23,11 +23,26 @@ export default function TabsBar() {
         aria-label="navigation"
       >
         <Tab value="one" label="Top Stories" component={Link} to={"/"} />
-        <Tab value="two" label="Football" component={Link} to={"/articles"} />
-        <Tab value="three" label="Coding" component={Link} to={'/coding'}/>
-        <Tab value="four" label="Cooking" />
+        <Tab
+          value="two"
+          label="Football"
+          component={Link}
+          to={"/topic/football"}
+        />
+        <Tab
+          value="three"
+          label="Coding"
+          component={Link}
+          to={"/topic/coding"}
+        />
+        <Tab
+          value="four"
+          label="Cooking"
+          component={Link}
+          to={"/topic/cooking"}
+        />
         <OrderBy />
-        <SortBy />
+        <SortBytab />
       </Tabs>
     </Box>
   );
