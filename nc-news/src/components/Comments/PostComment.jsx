@@ -5,6 +5,7 @@ import { addCommentByArticleId } from "../utils/api";
 
 export default function PostComment({ currentUser, setArticleComments, setFetchedComments }) {
   const { username } = currentUser;
+  console.log(username)
   const [newComment, setNewComment] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
   const { article_id } = useParams();

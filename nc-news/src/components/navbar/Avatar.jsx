@@ -79,7 +79,7 @@ export default function BadgeAvatars() {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
           >
-            <Avatar alt="user name" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="user name" src="https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141" />
           </StyledBadge>
         </IconButton>
         <Typography>Username</Typography>
@@ -101,7 +101,8 @@ export default function BadgeAvatars() {
         </DrawerHeader>
         
         <Divider />
-        <Avatar alt="user name" src="/static/images/avatar/1.jpg" />
+        <Avatar alt="user name" src="https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141"
+     />
       </Drawer>
     </Stack>
   );
