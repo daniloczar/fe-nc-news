@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../User/UserContext";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -54,6 +56,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function BadgeAvatars() {
     const [open, setOpen] = useState(false);
+    const { user } = useContext(UserContext);
+    console.log('from Avatar',user);
       const drawerOpen = () => {
         setOpen(true);
       };

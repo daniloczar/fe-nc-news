@@ -5,7 +5,7 @@ import PostComment from "../Comments/PostComment";
 import { getArticleById } from "../utils/api";
 import Article from "./Article";
 
-export default function ArticleId({ currentUser }) {
+export default function ArticleId({ user }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
@@ -33,7 +33,7 @@ export default function ArticleId({ currentUser }) {
           <PostComment
             setArticleComments={setArticleComments}
             setFetchedComments={setFetchedComments}
-            currentUser={currentUser}
+            user={user}
           />
           <ArticleComments
             articleComments={articleComments}

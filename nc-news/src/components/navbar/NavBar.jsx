@@ -26,7 +26,6 @@ import {
 } from "react-icons/fa6";
 import { useState } from "react";
 import BadgeAvatars from "./Avatar";
-import TabsBar from "../Toolbar/Toolbar";
 import { useNavigate } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -42,7 +41,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 function NavBar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate()
-
   const topics = [
     { text: "Home", path: "/articles", icon: <FaHouse color="black" /> },
     { text: "Coding", path: "/topic/coding", icon: <FaCode color="black" /> },
@@ -123,11 +121,10 @@ function NavBar() {
                 NC - News
               </Typography>
             </Box>
-            <BadgeAvatars />
+            <BadgeAvatars/>
           </Toolbar>
           <Divider />
           <Box style={{ backgroundColor: "#828282" }}>
-            {/* <TabsBar /> */}
           </Box>
         </AppBar>
         <Drawer anchor="left" open={open} onClose={drawerClose}>

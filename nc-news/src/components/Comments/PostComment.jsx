@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { addCommentByArticleId } from "../utils/api";
 
 
-export default function PostComment({ currentUser, setArticleComments, setFetchedComments }) {
-  const { username } = currentUser;
+export default function PostComment({ user, setArticleComments, setFetchedComments }) {
+  const { username } = user;
   const [newComment, setNewComment] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
   const { article_id } = useParams();
