@@ -6,7 +6,6 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 function ArticlesCard({ article }) {
-  console.log('from card',article)
    const navigate = useNavigate();
   return (
     <section className="cardMain">

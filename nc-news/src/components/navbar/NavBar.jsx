@@ -127,7 +127,7 @@ function NavBar() {
           </Toolbar>
           <Divider />
           <Box style={{ backgroundColor: "#828282" }}>
-            <TabsBar />
+            {/* <TabsBar /> */}
           </Box>
         </AppBar>
         <Drawer anchor="left" open={open} onClose={drawerClose}>

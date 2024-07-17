@@ -7,16 +7,16 @@ const api = axios.create({
 export const getArticles = (topic, sortBy, order) => {
   return api
     .get("/articles", {
-      params: { topic: topic, sort_by: sortBy, order },
+      params: { topic: topic, sort_by: sortBy, order},
     })
     .then((res) => {
-      console.log("from api articles", res);
       return res.data;
     })
     .catch((err) => {
       console.log(err);
     });
-};
+  };
+
 
 export const getArticleById = (article_id) => {
   return api
@@ -53,7 +53,6 @@ export const addCommentByArticleId = (username, body, article_id) => {
     body: body,
   };
   return api.post(`/articles/${article_id}/comments`, postBody).then((res) => {
-    console.log("from post api", res);
     return res.data;
   });
 };
@@ -70,7 +69,6 @@ export const deleteCommentById = (comment_id) => {
   return api
     .delete(`/comments/${comment_id}`)
     .then((res) => {
-      console.log("From delete api", res);
       return res.data;
     })
     .catch((error) => {

@@ -51,6 +51,7 @@
 .articleH2 {
   text-align: center;
   margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .article-body{
@@ -194,4 +195,10 @@
 
 #option-list li {
   margin-left: 20px;
+}
+
+.testTab1{
+  font-size: 50px;
+  color: brown;
+  background-color: #c9c8c8;
 }

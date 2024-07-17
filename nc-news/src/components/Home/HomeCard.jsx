@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 function HomeCard({article}) {
-  console.log('----->',article)
   return (
     <div className="cardHomeSmall">
       <img

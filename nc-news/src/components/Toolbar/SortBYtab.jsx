@@ -3,8 +3,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SortBytab({setSortBy}) {
-  const handleChange = (event) => {
+export default function SortBytab({ setSortBy }) {
+  const handleSortByChange = (event) => {
     setSortBy(event.target.value);
   };
 
@@ -14,7 +14,7 @@ export default function SortBytab({setSortBy}) {
         <Select
           className="dropdownOrder"
           defaultValue={"SortBy"}
-          onChange={handleChange}
+          onChange={handleSortByChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
           sx={{ fontSize: 14 }}
@@ -23,7 +23,7 @@ export default function SortBytab({setSortBy}) {
             <em>SortBy</em>
           </MenuItem>
           <MenuItem value={"created_at"}>Date</MenuItem>
-          <MenuItem value={"comment_count"}>Comment count</MenuItem>
+          <MenuItem value={"author"}>Author</MenuItem>
           <MenuItem value={"votes"}>Votes</MenuItem>
           <MenuItem value={"title"}>Title</MenuItem>
         </Select>

@@ -3,11 +3,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function OrderBy() {
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
+export default function OrderBy({ setOrder }) {
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
   };
 
   return (
@@ -15,17 +13,17 @@ export default function OrderBy() {
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
           className="dropdownOrder"
-          value={age}
-          onChange={handleChange}
+          defaultValue={"OrderBy"}
+          onChange={handleOrderChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
           sx={{ fontSize: 14 }}
         >
-          <MenuItem value="">
+          <MenuItem value="OrderBy">
             <em>OrderBy</em>
           </MenuItem>
-          <MenuItem value={10}>Ascending</MenuItem>
-          <MenuItem value={20}>Descending</MenuItem>
+          <MenuItem value={"asc"}>Ascending</MenuItem>
+          <MenuItem value={"desc"}>Descending</MenuItem>
         </Select>
       </FormControl>
     </div>
