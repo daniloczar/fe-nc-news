@@ -10,12 +10,6 @@ import UsersList from "./components/User/User"
 
 
 function App() {
-    // const [user, setUser] = useState({
-    //   username: "jessjelly",
-    //   name: "Jess Jelly",
-    //   avatar_url:
-    //     "https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141",
-    // });
     const [sortBy, setSortBy] = useState("created_at");
     const [order, setOrder] = useState("asc");
   return (
@@ -26,8 +20,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<UsersList />}
-            // {<ArticlesList sortBy={sortBy} order={order} />}
+            element={<ArticlesList sortBy={sortBy} order={order} />}
           />
           <Route
             path="/articles"

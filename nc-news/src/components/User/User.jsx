@@ -1,22 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-import { getUsers } from "../utils/api";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 function UsersList() {
-  const [users, setUsers] = useState([]);
+   const { users, login } = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleSelectUser(user) {
-    setUsers(user);
+    login(user);
     navigate("/articles");
   }
-
-  useEffect(() => {
-    getUsers().then(({ users }) => {
-      console.log('from UserList----->',users);
-      setUsers(users);
-    });
-  }, []);
 
   return (
     <main>
@@ -26,7 +19,7 @@ function UsersList() {
             <div
               key={user.username}
               className="user-card"
-              onClick={handleSelectUser}
+              onClick={() => handleSelectUser(user)}
             >
               <img
                 src={user.avatar_url}

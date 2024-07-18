@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ArticleComments from "../Comments/ArticlesComment";
 import PostComment from "../Comments/PostComment";
+import { UserContext } from "../User/UserContext";
 import { getArticleById } from "../utils/api";
 import Article from "./Article";
 
-export default function ArticleId({ user }) {
+export default function ArticleId() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [fetchedComments, setFetchedComments] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(true);
+  const { users } = useContext(UserContext);
 
   useEffect(() => {
     if (reload) {
@@ -33,7 +35,6 @@ export default function ArticleId({ user }) {
           <PostComment
             setArticleComments={setArticleComments}
             setFetchedComments={setFetchedComments}
-            user={user}
           />
           <ArticleComments
             articleComments={articleComments}

@@ -4,6 +4,7 @@ import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import {
+  Button,
   Divider,
   Drawer,
   IconButton,
@@ -14,6 +15,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../User/UserContext";
+import UsersList from "../User/User";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -56,17 +58,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function BadgeAvatars() {
     const [open, setOpen] = useState(false);
-    const { user } = useContext(UserContext);
-    console.log('from Avatar',user);
+    const { currentUser, logout } = useContext(UserContext);
+
       const drawerOpen = () => {
         setOpen(true);
       };
       const drawerClose = () => {
         setOpen(false);
       };
-
-//need to finish
-//styling and add a log out button
 
   return (
     <Stack>
@@ -83,30 +82,50 @@ export default function BadgeAvatars() {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
           >
-            <Avatar alt="user name" src="https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141" />
+            <Avatar
+              alt={currentUser ? currentUser.name : "Anonymous"}
+              src={
+                currentUser
+                  ? currentUser.avatar_url
+                  : "https://icons.iconarchive.com/icons/iconarchive/incognito-animals/256/Lion-Avatar-icon.png"
+              }
+            />
           </StyledBadge>
         </IconButton>
-        <Typography>Username</Typography>
+        {/* username when is logged */}
+        <Typography>{currentUser ? currentUser.name : "Guest"}</Typography>
       </Toolbar>
 
       <Drawer anchor="right" open={open} onClose={drawerClose}>
-        <DrawerHeader
-          sx={{
-            width: 200,
-            display: "flex",
-          }}
-        >
+        <DrawerHeader className="drawerLogin">
           <IconButton onClick={drawerClose}>
             <ChevronRightIcon sx={{ color: "#fff" }} />
           </IconButton>
           <Typography variant="h6" component="div">
-            UserName
+            {currentUser ? currentUser.name : "Guest"}
           </Typography>
+          <Avatar
+            alt={currentUser ? currentUser.name : "Anonymous"}
+            src={
+              currentUser
+                ? currentUser.avatar_url
+                : "https://icons.iconarchive.com/icons/iconarchive/incognito-animals/256/Lion-Avatar-icon.png"
+            }
+          />
         </DrawerHeader>
-        
+
         <Divider />
-        <Avatar alt="user name" src="https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141"
-     />
+        <Divider />
+        <div className="userListLogin">
+          <UsersList />
+        </div>
+        <Stack direction="row" spacing={2} justifyContent="center" padding={2}>
+          {currentUser ? (
+            <Button variant="contained" color="secondary" onClick={logout}>
+              Logout
+            </Button>
+          ) : null}
+        </Stack>
       </Drawer>
     </Stack>
   );

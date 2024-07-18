@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../User/UserContext";
 import { addCommentByArticleId } from "../utils/api";
 
 
-export default function PostComment({ user, setArticleComments, setFetchedComments }) {
-  const { username } = user;
+export default function PostComment({ setArticleComments, setFetchedComments }) {
   const [newComment, setNewComment] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
   const { article_id } = useParams();
+  const {users} =useContext(UserContext)
 
-  function handleSubmit(event) {
+  const username = users
+
+  
+function handleSubmit(event) {
     setFetchedComments(false);
     event.preventDefault();
+    
     addCommentByArticleId(username, newComment, article_id)
       .then((newCommentFromApi) => {
         setNewComment("");
