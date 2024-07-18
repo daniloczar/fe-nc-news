@@ -98,6 +98,7 @@ function NavBar() {
               display: "flex",
               justifyContent: "space-between",
               minHeight: "70px",
+              marginRight:'30px'
             }}
           >
             <Box
@@ -124,8 +125,6 @@ function NavBar() {
             <BadgeAvatars/>
           </Toolbar>
           <Divider />
-          <Box style={{ backgroundColor: "#828282" }}>
-          </Box>
         </AppBar>
         <Drawer anchor="left" open={open} onClose={drawerClose}>
           {/* offset menu */}

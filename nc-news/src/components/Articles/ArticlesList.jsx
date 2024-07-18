@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as api from "../utils/api";
 import ArticlesCard from "./ArticlesCard";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 
 const ArticlesList = ({ sortBy, order }) => {
@@ -11,6 +12,7 @@ const ArticlesList = ({ sortBy, order }) => {
   const [isLoadingTopicsFailed, setIsLoadingTopicsFailed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [articlesOnThisPage, setArticlesOnThisPage] = useState([]);
+
 
   useEffect(() => {
     setCurrentPage(1);
@@ -38,11 +40,11 @@ const ArticlesList = ({ sortBy, order }) => {
     : "Articles";
 
   if (isLoading) {
-    return <h2>loading</h2>;
+    return <Loading />;
   }
   return (
     <section className="articleMain">
-      {isLoading ? "Loading..." : null}
+      {isLoading ? <Loading /> : null}
       {isLoadingTopicsFailed ? "Topic does not exist" : null}
 
       {!isLoading && !isLoadingTopicsFailed ? (

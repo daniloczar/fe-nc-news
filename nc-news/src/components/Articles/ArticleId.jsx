@@ -4,6 +4,7 @@ import ArticleComments from "../Comments/ArticlesComment";
 import PostComment from "../Comments/PostComment";
 import { UserContext } from "../User/UserContext";
 import { getArticleById } from "../utils/api";
+import Loading from "../Loading/Loading";
 import Article from "./Article";
 
 export default function ArticleId() {
@@ -28,7 +29,7 @@ export default function ArticleId() {
   return (
     <>
       {isLoading ? (
-        <h2>loading...</h2>
+        <Loading />
       ) : (
         <div>
           <Article article={article} />

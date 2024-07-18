@@ -3,13 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 function UsersList() {
-   const { users, login } = useContext(UserContext);
+   const { users, login, currentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleSelectUser(user) {
     login(user);
     navigate("/articles");
   }
+
+    if (currentUser) {
+      return (
+        <main>
+          <p style={{ padding: "16px", textAlign: "center" }}>
+            Please log out to select another user.
+          </p>
+        </main>
+      );
+    }
 
   return (
     <main>

@@ -92,7 +92,6 @@ export default function BadgeAvatars() {
             />
           </StyledBadge>
         </IconButton>
-        {/* username when is logged */}
         <Typography>{currentUser ? currentUser.name : "Guest"}</Typography>
       </Toolbar>
 

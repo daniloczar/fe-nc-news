@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import moment from "moment";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import IconButton from "@mui/material/IconButton";
+import Loading from "../Loading/Loading";
 
 export default function ArticleComments({
   articleComments,
@@ -40,7 +41,7 @@ export default function ArticleComments({
   if (isLoading)
     return (
       <>
-        <p className="loading-text">Loading ...</p>
+        <Loading />
         <img
           className="Preloader"
           src="https://media1.tenor.com/m/IzWeYVhewBsAAAAd/the-simpsons-homer.gif"
