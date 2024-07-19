@@ -57,7 +57,7 @@ export default function AboutPage() {
           <p>
             As I continue to expand my skills and knowledge, I have exciting
             plans to enhance NC News further. These include adding user
-            authentication, improving the user interface, and introducing more
+            authentication, improving the user interface, adding pagination, and introducing more
             interactive features to make the platform even more engaging.
           </p>
           <p className="thanks">

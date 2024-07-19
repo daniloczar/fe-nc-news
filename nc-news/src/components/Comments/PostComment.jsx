@@ -3,20 +3,24 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../User/UserContext";
 import { addCommentByArticleId } from "../utils/api";
 
-
-export default function PostComment({ setArticleComments, setFetchedComments }) {
+export default function PostComment({
+  setArticleComments,
+  setFetchedComments,
+}) {
   const [newComment, setNewComment] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
   const { article_id } = useParams();
-  const {users} =useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
 
-  const username = users
-
-  
-function handleSubmit(event) {
-    setFetchedComments(false);
+  function handleSubmit(event) {
     event.preventDefault();
-    
+
+    if (!currentUser) {
+      setCommentMessage("You must be logged in to post a comment.");
+    }
+
+    const username = currentUser.username;
+
     addCommentByArticleId(username, newComment, article_id)
       .then((newCommentFromApi) => {
         setNewComment("");
