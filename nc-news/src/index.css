@@ -97,6 +97,7 @@
   padding: 5px 25px;
   text-decoration: none;
   font-weight: 400;
+  margin-bottom: 15px;
 }
 .submit:hover {
   background-color: #313131;
